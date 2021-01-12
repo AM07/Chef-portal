@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                             -->
+<!-- Sample response file for WebSphere Portal Server      -->
+<!-- with default values for Linux, HP-UX, and Oracle Solaris                                -->
+<!--                                                             -->
+<agent-input>
+    <!-- Listing of repositories -->
+    <server>
+        <!-- Fill in the locations of the WAS and Portal installation repositories       -->
+        <!-- that are accessible from the system where the install will be run.          -->
+        <!-- You can fill in the repositories separately, or you may point to            -->
+        <!-- a consolidated repository that defines all products.                        -->
+        <!-- If using separate repositories, be sure to list them in this order:         -->
+        <!--  repository location='/repository/path/for/WAS'                             -->
+        <!--  repository location='/repository/path/for/Java7'                           -->
+        <!--  repository location='/repository/path/for/PortalServer'                    -->
+        <repository location='<%=node['ibmdx']['setup_repo']%>'/>
+    </server>
+    <!-- Listing of products and fixes to be installed -->
+        <install modify='false'>
+        <offering id='8.5.5.0-WS-WASProd-IFPI15756' profile='IBM WebSphere Application Server V8.5' features='-'/>
+        <offering id='8.5.5.2-WS-WAS-IFPI15581' profile='IBM WebSphere Application Server V8.5' features='-'/>
+                <offering id='com.ibm.websphere.ND.v85' profile='IBM WebSphere Application Server V8.5' features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit' installFixes='none'/>
+                <offering id='com.ibm.websphere.IBMJAVA.v70' profile='IBM WebSphere Application Server V8.5' features='com.ibm.sdk.7' installFixes='none'/>
+        <offering id='com.ibm.websphere.PORTAL.SERVER.v85' profile='IBM WebSphere Portal Server V8.5' features='ce.install,portal.binary,portal.profile' installFixes='none'/>
+        </install>
+    <profile id='IBM WebSphere Application Server V8.5' installLocation='<%=node['ibmdx']['was_install_location']%>'>
+        <data key='eclipseLocation' value='<%=node['ibmdx']['websphere_location']%>\AppServer'/>
+                <data key='user.import.profile' value='false'/>
+        <data key='cic.selector.nl' value='en'/>
+    </profile>
+    <profile id='IBM WebSphere Portal Server V8.5' installLocation='<%=node['ibmdx']['portal_install_location']%>'>
+        <data key='eclipseLocation' value='<%=node['ibmdx']['portal_install_location']%>'/>
+        <data key='user.was.installLocation,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['was_install_location']%>'/>
+        <data key='user.configengine.binaryLocation,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['websphere_location']%>\ConfigEngine'/>
+        <data key='user.wp.wasprofiles.location,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['was_install_location']%>\profiles'/>
+        <data key='user.cw.userid,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['portal_admin']%>'/>
+        <data key='user.cw.password,com.ibm.websphere.PORTAL.SERVER.v85' value='tTTKjysjbznw1L7s7wZ0Uw=='/>
+        <data key='user.wp.base.offering,com.ibm.websphere.PORTAL.SERVER.v85' value='portal.server'/>
+        <data key='user.iim.currentlocale,com.ibm.websphere.PORTAL.SERVER.v85' value='en'/>
+        <data key='cic.selector.nl' value='en'/>
+        <data key='user.import.profile' value='false'/>
+        <data key='user.wp.hostname,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['hostname']%>'/>
+        <data key='user.wp.cellname,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['hostname']%>Cell'/>
+        <data key='user.wp.nodename,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['hostname']%>myNode'/>
+        <data key='user.wp.userid,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['portal_admin']%>'/>
+        <data key='user.wp.password,com.ibm.websphere.PORTAL.SERVER.v85' value='tTTKjysjbznw1L7s7wZ0Uw=='/>
+        <data key='user.wp.custom.contextroot,com.ibm.websphere.PORTAL.SERVER.v85' value='wps'/>
+        <data key='user.wp.custom.defaulthome,com.ibm.websphere.PORTAL.SERVER.v85' value='portal'/>
+        <data key='user.wp.custom.personalhome,com.ibm.websphere.PORTAL.SERVER.v85' value='myportal'/>
+        <data key='user.wp.starting.port,com.ibm.websphere.PORTAL.SERVER.v85' value='10012'/>
+        <data key='user.wp.profilename,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['wp_profile']%>'/>
+        <data key='user.wp.profilepath,com.ibm.websphere.PORTAL.SERVER.v85' value='<%=node['ibmdx']['websphere_location']%>\wp_profile'/>
+    </profile>
+    <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='C:\IBM\IMShared'/>
+    <preference name='com.ibm.cic.common.core.preferences.connectTimeout' value='30'/>
+    <preference name='com.ibm.cic.common.core.preferences.readTimeout' value='45'/>
+    <preference name='com.ibm.cic.common.core.preferences.downloadAutoRetryCount' value='0'/>
+    <preference name='offering.service.repositories.areUsed' value='false'/>
+    <preference name='com.ibm.cic.common.core.preferences.ssl.nonsecureMode' value='false'/>
+    <preference name='com.ibm.cic.common.core.preferences.http.disablePreemptiveAuthentication' value='false'/>
+    <preference name='http.ntlm.auth.kind' value='NTLM'/>
+    <preference name='http.ntlm.auth.enableIntegrated.win32' value='true'/>
+    <preference name='com.ibm.cic.common.core.preferences.preserveDownloadedArtifacts' value='true'/>
+    <preference name='com.ibm.cic.common.core.preferences.keepFetchedFiles' value='false'/>
+    <preference name='PassportAdvantageIsEnabled' value='false'/>
+    <preference name='com.ibm.cic.common.core.preferences.searchForUpdates' value='false'/>
+    <preference name='com.ibm.cic.agent.ui.displayInternalVersion' value='false'/>
+    <preference name='com.ibm.cic.common.sharedUI.showErrorLog' value='true'/>
+    <preference name='com.ibm.cic.common.sharedUI.showWarningLog' value='true'/>
+    <preference name='com.ibm.cic.common.sharedUI.showNoteLog' value='true'/>
+</agent-input>
