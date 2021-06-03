@@ -18,7 +18,7 @@ when 'windows'
   version=node['ibmdx']['version']
 
   #To change the download URL
-  default['ibmdx']['download_url']="http://9.124.119.172/IBMDX/#{version}"
+  default['ibmdx']['download_url']="<Enter Repository URL to download binaries>"
 
   #Do not change this --- to check if the binaries have been extracted or not
   default['ibmdx']['install_extracted_dir']="#{extraction_dir}\\SETUP"
@@ -80,7 +80,7 @@ when 'redhat'
   version=node['ibmdx']['version']
 
   #To change the download url
-  default['ibmdx']['download_url']="http://9.124.119.172/IBMDX/#{version}"
+  default['ibmdx']['download_url']="<Enter Repository URL to download binaries>"
 
   #To change websphere location
   default['ibmdx']['websphere_location']='/opt/IBM/WebSphere'
